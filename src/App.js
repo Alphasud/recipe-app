@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Recipe from './Recipe';
 import './App.css';
@@ -10,12 +11,11 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('');
-  
-  useEffect( () => {
-    getRecipes();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query]);
 
+  useEffect(() => {
+    getRecipes();
+  }, [query]);
+  
   const getRecipes = async () => {
     const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
     const data = await response.json();
@@ -32,6 +32,8 @@ function App() {
     setQuery(search);
     setSearch('');
   };
+
+
 
 
   return (
